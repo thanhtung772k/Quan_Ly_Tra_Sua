@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "About";
+
+}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<div id="container" style="min-width:100px; height:200px; margin:0 auto"></div>
+
+<script>
+    $(document).ready(function () {
+        $.getJSON("/Home/GetData", function (data) {
+            var Names = []
+            var Qts = []
+            for (var i = 0; i < data.length; i++)
+        {
+                Names.push(data[i].name);
+                Qts.push(data[i].count);
+        }
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Thống Kê Sản Phẩm Được Ưa Thích'
+                },
+                subtitle: {
+                    text: 'Source: Shin.com'
+                },
+                xAxis: {
+                    categories: Names
+                },
+                yAxis: {
+                    title: {
+                        text: 'Số Lượng Sản Phẩm Khách Lựa Chọn'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Trend',
+                    data: Qts
+                }]
+            });
+        });
+    });
+    
+    
+</script>

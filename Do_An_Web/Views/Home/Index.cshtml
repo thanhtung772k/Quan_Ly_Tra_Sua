@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Do_An_Web.Models.SanPham>
+@using Do_An_Web.Models
+@using System.Linq
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-3" style="background-color:lavender; margin-top:5px; text-align:center;">
+            <tr>
+                <td> @Html.Image("../" + item.HinhAnh, "alt", "170") <br /></td>
+                <td>@item.TenSP <br /></td>
+                <td>@item.Gia VNĐ <br /></td>
+                <a class="btn btn-info btn-sm" href="@Url.Action("Details", "SanPhams", new { id=item.MaSP })"> Xem Chi tiết </a>
+            </tr>
+
+        </div>
+    }
+</div>

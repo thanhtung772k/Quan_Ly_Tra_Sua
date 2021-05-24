@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Do_An_Web.Models.CTHoaDon>
+
+@{
+    ViewBag.Title = "Chi Tiết Hóa Đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:hotpink;">Chi Tiết Hóa Đơn</h2>
+@foreach (var m in ViewBag.Main)
+{
+    <table>
+        <tr>
+            <td>
+                <h3>Mã Hóa Đơn:</h3>
+            </td>
+            <td>
+                <h3 style="color:mediumvioletred;"> @m.hoadon.MaHD</h3>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <h3>Tên Khách Hàng:</h3>
+            </td>
+            <td>
+                <h3 style="color:mediumvioletred;"> @m.khachhang.TenKH</h3>
+            </td>
+        </tr>
+    </table>
+   
+}
+<table class="table table-striped ">
+    <tr>
+        <th>Số TT</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Giá</th>
+        <th>Thành Tiền</th>
+    </tr>
+    @{
+        double tongtien = 0;
+        int i = 0;
+    }
+    @foreach (var item in ViewBag.Sub)
+    {
+        i++;
+        tongtien += (Convert.ToInt32(@item.cthd.SoLuong) * Convert.ToInt32(@item.cthd.Gia));
+        <tr>
+            <td>@i</td>
+            <td>@item.sanpham.TenSP</td>
+            <td>@item.cthd.SoLuong</td>
+            <td>@String.Format("{0:0,##0}", item.cthd.Gia)</td>
+            <td>@String.Format("{0:0,##0}", item.Thanhtien)</td>
+        </tr>
+    }
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Tổng Tiền:</th>
+        <th><text>@String.Format("{0:0,##0}", tongtien)</text>     VNĐ</th>
+    </tr>
+</table>

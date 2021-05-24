@@ -1,0 +1,60 @@
+﻿@model Do_An_Web.Models.SanPham
+@using Do_An_Web.Models
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:hotpink;">Chi Tiết Sản Phẩm</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia) VND
+        </dd>
+        <dt>
+            Loại Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham.TenLoai)
+        </dd>
+
+        <dt>
+            Hình Ảnh
+        </dt>
+
+        <dd>
+            @Html.Image("../../" + Model.HinhAnh, @Model.HinhAnh, "150")
+        </dd>
+        <dd>
+            <br />
+            <a class="btn btn-success btn-sm" href="@Url.Action("AddToCart","ShoppingCart", new { MaSP= @Model.MaSP})">
+                <span class="icon_cart_alt"></span> Thêm vào giỏ
+            </a>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Index","Home", new { MaSP= @Model.MaSP})">
+                Quay Lại
+            </a>
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

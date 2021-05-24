@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Do_An_Web.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:hotpink;">Danh Mục Hóa Đơn</h2>
+<table class="table">
+    <tr>
+        <th>
+            Mã Hóa Đơn
+        </th>
+        <th>
+            Ngày Bán
+        </th>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            Nơi Nhận
+        </th>
+        <th>
+            Thanh Toán
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Index","CTHoaDons",new { MaHD= item.MaHD})">
+                    @Html.DisplayFor(modelItem => item.MaHD)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhToan.TenPT)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaHD }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaHD })
+            </td>
+        </tr>
+    }
+
+</table>
+

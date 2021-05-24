@@ -1,0 +1,10 @@
+﻿<ul class="sub">
+    @foreach (var item in ViewBag.TenLoaiSP)
+    {
+        <li>
+            <a href="@Url.Action("Index","Home", new {MaloaiSP= item.Key })" style="color: hotpink;">
+                @item.Value
+            </a>
+        </li>
+    }
+</ul>

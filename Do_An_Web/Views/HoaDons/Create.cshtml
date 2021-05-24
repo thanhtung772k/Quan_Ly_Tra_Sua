@@ -1,0 +1,65 @@
+﻿@model Do_An_Web.Models.HoaDon
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table border="0" style=" width: 350px;">
+        <div class="form-horizontal">
+            <tr>
+                <td colspan="2">
+                    <div class="form-group">
+                        Họ Tên: <input type="text" name="Name" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="1">
+                    <div class="form-group">
+                        Địa Chỉ: <input type="text" name="Address" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div class="form-group">   </div>
+                    Số Điện Thoại: <input type="text" name="SDT" class="form-control" />
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="form-group">
+                        Email: <input type="email" name="Email" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1" class="text-left">
+                    <div class="form-group">
+                        Thanh Toán:
+                        @Html.DropDownList("MaPT", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaPT, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1" class="text-right">
+                    <form action="@Url.Action("ProcessOrder","ShoppingCart")" method="get">
+                        <input type="submit" value="Đặt Hàng" class="btn btn-success btn-sm " />
+                    </form>
+                </td>
+
+            </tr>
+        </div>
+    </table>
+}
